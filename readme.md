@@ -1,51 +1,35 @@
-# Nome do Projeto
 
-![Badge de Versão](https://img.shields.io/badge/versão-1.0.0-brightgreen)
-![Licença](https://img.shields.io/badge/licença-MIT-blue)
+# Testes automatizados para API de usuários
 
-> Breve descrição do projeto. Explique o que o projeto faz, qual problema ele resolve ou seu propósito principal.
+📋 Índice
+- Sobre
+- Tecnologias Utilizadas
+- Instalação
+- Como Usar
 
-## 📋 Índice
+🌟 Sobre
 
-- [Sobre](#sobre)
-- [Demonstração](#demonstração)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Instalação](#instalação)
-- [Como Usar](#como-usar)
-- [Contribuição](#contribuição)
-- [Roadmap](#roadmap)
-- [Licença](#licença)
-- [Contato](#contato)
+Este projeto é um conjunto de testes automatizados para as APIs de Criação, Consulta, Edição e Deleção de usuários. 
 
-## 🌟 Sobre
+O objetivo é garantir que as API funcionem corretamente, validando tanto cenários de sucesso quanto de falha.
 
-Descreva aqui mais detalhes sobre o projeto: seus objetivos, motivação, principais funcionalidades e o que torna o projeto especial ou interessante.
 
-## 🎥 Demonstração
+🛠️ Tecnologias Utilizadas
+* Ruby – Linguagem de programação usada para os testes
+* RSpec – Framework de testes para Ruby
+* JSON Schema – Validação de esquema JSON
+* APIClient – Cliente para interagir com a API
 
-Inclua aqui capturas de tela, GIFs ou links para vídeos que demonstrem como o projeto funciona.
+🚀 Instalação
+Siga os passos abaixo para instalar e executar os testes automatizados:
 
-![Demonstração](link_da_imagem_ou_gif)
 
-## 🛠️ Tecnologias Utilizadas
-
-- [Linguagem/Framework/Biblioteca 1](link)
-- [Linguagem/Framework/Biblioteca 2](link)
-- [Linguagem/Framework/Biblioteca 3](link)
-
-## 🚀 Instalação
-
-Siga os passos abaixo para instalar o projeto em sua máquina local:
-
-```bash
 # Clone este repositório
-git clone https://github.com/seuusuario/nomedoprojeto.git
+git clone https://github.com/Saraspedrosa/desafio-rpe.git
 
-# Acesse a pasta do projeto
-cd nomedoprojeto
 
 # Instale as dependências
-npm install
+bundle install
 
-# Execute o projeto
-npm start
+# Execute os testes
+Para executá-los, use o comando rspec. Certifique-se de ter o Ruby e o Bundler instalados em sua máquina. Os testes verificarão a criação bem-sucedida de um usuário com parâmetros válidos e a rejeição de entradas inválidas.
