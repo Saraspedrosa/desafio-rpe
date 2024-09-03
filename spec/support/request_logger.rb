@@ -1,21 +1,29 @@
-# spec/support/request_logger.rb
+require 'json'
+require 'logger'
+
 
 module RequestLogger
-  def log_request(request_body, url = nil)
-    puts "Request URL: #{url}" if url
-    puts "Request Body: #{JSON.pretty_generate(request_body)}"
+  LOG = Logger.new(STDOUT)
+  file = Logger.new('evidence.log')
+
+  LOG.level = Logger::DEBUG
+  file.level = Logger::DEBUG
+
+  def log_request(request_body = nil, url = nil)
+    LOG.info("Request URL: #{url}") if url
+    LOG.info("Request Body: #{JSON.pretty_generate(request_body)}")
   end
 
   def log_response(response, expect_code)
     begin
-      puts "status code Esperado: #{expect_code}"
-      puts "status code Recebido da API: #{response.code}"
+      LOG.info("status code Esperado: #{expect_code}")
+      LOG.info("status code Recebido da API: #{response.code}")
 
-      formatted_json = JSON.pretty_generate(JSON.parse(response.body))
-      puts "Response:\n#{formatted_json}"
+      formatted_json = response.body ? JSON.pretty_generate(JSON.parse(response.body)) : "Não possui response"
+      LOG.info("Response:\n#{formatted_json}")
     rescue => exception
-      puts "Falha ao retornar a requisição parseada #{response.body}"
-      puts exception
+      LOG.info("Falha ao retornar a requisição parseada #{response.body}")
+      LOG.info(exception)
     end
   end
 end

@@ -1,4 +1,4 @@
-require 'spec_helper'
+#require 'spec_helper'
 require 'json-schema'
 require_relative '../../../lib/api_client'
 require_relative '../../support/request_logger'
@@ -25,7 +25,6 @@ RSpec.describe 'API de atualização parcial de dados de usuário', type: :reque
   end
 
   it 'Atualiza um usuário com dados válidos' do
-    log_request(valid_user_params)
     response = log_and_request(:patch, id, valid_user_params)
     validate_response(response, 200)
 
@@ -43,7 +42,6 @@ RSpec.describe 'API de atualização parcial de dados de usuário', type: :reque
   end
 
   it 'Não atualiza um usuário com ID inexistente' do
-    log_request(valid_user_params)
     response = log_and_request(:patch, invalid_id, valid_user_params)
     validate_response(response, 404)
   end

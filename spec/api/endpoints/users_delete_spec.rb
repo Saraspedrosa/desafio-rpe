@@ -1,4 +1,4 @@
-require 'spec_helper'
+#require 'spec_helper'
 require_relative '../../../lib/api_client'
 require_relative '../../support/request_logger'
 require_relative '../../helpers/api_helpers'
@@ -10,7 +10,6 @@ RSpec.describe 'API de deleção de usuário', type: :request do
   let(:base_uri) { APIClient.base_uri + '/users' }
   let(:id) { 2 }
   let(:nonexistent_user_id) { 9999 }
-  let(:invalid_user_id) { 'abc' }
 
   it 'Exclui um usuário válido' do
     response = log_and_request(:delete, id)
@@ -18,7 +17,7 @@ RSpec.describe 'API de deleção de usuário', type: :request do
   end
 
   it 'Não exclui um usuário que não existe' do
-    response = log_and_request(:delete, id)
+    response = log_and_request(:delete, nonexistent_user_id)
     validate_response(response, 404)
   end
 

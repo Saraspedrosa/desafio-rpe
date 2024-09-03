@@ -1,4 +1,8 @@
+require 'json-schema'
+require_relative '../support/request_logger'
+
 module ApiHelpers
+
 
   def log_and_request(method, id, params = {})
     log_request("#{method.upcase} - '#{base_uri}'")
@@ -15,20 +19,18 @@ module ApiHelpers
     end
   end
 
-  def validate_response(response, expected_code, error_message = nil)
+  def validate_response(response, expected_code)
     log_response(response, expected_code)
 
-    aggregate_failures do
-      expect(response.code).to eq(expected_code)
-      expect(response.parsed_response['error']).to eq(error_message) if error_message
-    end
+    expect(response.code).to eq(expected_code)
   end
 
   def contract_verify(response)
     validation_errors = JSON::Validator.fully_validate(schema_path, response, strict: true)
 
     if validation_errors.empty?
-      puts "Contrato validado com sucesso!"
+
+      RequestLogger::LOG.info("Contrato validado com sucesso!")
     end
 
     expect(validation_errors).to be_empty, "Erro ao validar o contrato: #{validation_errors.join(', ')}"

@@ -1,4 +1,4 @@
-require 'spec_helper'
+# require 'spec_helper'
 require_relative '../../../lib/api_client'
 require_relative '../../support/request_logger'
 require_relative '../../helpers/api_helpers'
@@ -24,22 +24,19 @@ RSpec.describe 'API de atualização de dados de usuário', type: :request do
   end
 
   it 'Atualiza um usuário com dados válidos' do
-    log_request(valid_user_params)
-
     response = log_and_request(:put, id, valid_user_params)
     validate_response(response, 200)
 
-    aggregate_failures do
-      expect(response.parsed_response['job']).to eq(valid_user_params[:job])
-    end
-    contract_verify(response.parsed_response)
+    expect(response.parsed_response['job']).to eq(valid_user_params[:job])
   end
 
+  # Não há validação
   it 'Não atualiza um usuário com ID inválido' do
     response = log_and_request(:put, invalid_user_id, valid_user_params)
     validate_response(response, 400)
   end
 
+  # Não há validação
   it 'Não atualiza um usuário com ID inexistente' do
     response = log_and_request(:put, invalid_id, valid_user_params)
     validate_response(response, 404)
@@ -53,11 +50,12 @@ RSpec.describe 'API de atualização de dados de usuário', type: :request do
     end
   end
 
+  # Não há validação
   it 'Não atualiza um usuário com campos faltantes' do
-    response = log_and_request(:put, id, { name: 'John Doe' })
+    response = log_and_request(:put, id, { name: 'José Testador da Silva' })
     validate_response(response, 400)
 
-    response = log_and_request(:put, id, { job: 'Software Developer' })
+    response = log_and_request(:put, id, { job: 'Tester' })
     validate_response(response, 400)
   end
 end

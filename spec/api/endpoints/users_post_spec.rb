@@ -1,4 +1,4 @@
-require 'spec_helper'
+#require 'spec_helper'
 require 'json-schema'
 require_relative '../../../lib/api_client'
 require_relative '../../support/request_logger'
@@ -24,7 +24,6 @@ RSpec.describe 'API de criação de usuários', type: :request do
   end
 
   it 'Criando um novo usuário' do
-    log_request(valid_user_params)
     response = log_and_request(:create, nil, valid_user_params)
     validate_response(response, 201)
 
@@ -39,8 +38,6 @@ RSpec.describe 'API de criação de usuários', type: :request do
 
   # Não há validações da API para inputs inválidos.
   it 'Não cria um usuário a partir de inputs inválidos' do
-    log_request(valid_user_params)
-
     invalid_params_list.each do |params|
       response = log_and_request(:create, nil, params)
       validate_response(response, 400)
